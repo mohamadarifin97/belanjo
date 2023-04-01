@@ -15,7 +15,9 @@ class Spending extends Model
         'spend_list',
         'total',
         'month',
-        'year'
+        'year',
+        'created_at',
+        'updated_at'
     ];
 
     // protected $casts = [
