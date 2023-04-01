@@ -82,6 +82,8 @@
     {{-- TOASTR --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {{-- APEXCHART --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         @if(Session::has('message'))
             toastr.options =
