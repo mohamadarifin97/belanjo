@@ -1,7 +1,7 @@
 stages:
   - deploy_belanjo-app
 
-D:STT:
+D:BELANJO:
   stage: deploy_belanjo-app
   environment:
     name: DEV
