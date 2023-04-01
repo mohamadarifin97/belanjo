@@ -1,0 +1,23 @@
+stages:
+  - deploy_belanjo-app
+
+D:STT:
+  stage: deploy_belanjo-app
+  environment:
+    name: DEV
+    url: http://103.169.90.96
+  only:
+    - main
+  script:
+    - echo "------ DEPLOYING DEV... ------"
+    - git config --global --add safe.directory /var/www/html/belanjo-app
+    - cd /var/www/html/belanjo-app
+    - git status
+    - git stash
+    - git pull
+    - php artisan config:cache
+    - git status
+    - echo "------ DEV DEPLOYED ------"
+  when: always
+  tags: 
+    - belanjo-app
