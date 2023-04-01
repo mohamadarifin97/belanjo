@@ -6,6 +6,7 @@ use App\Models\Spending;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -41,12 +42,26 @@ class HomeController extends Controller
         }
         krsort($months_years);
 
-        return view('home', compact('months_years'));
+        $spendings_total = Spending::get('total')->toArray();
+        $spendings_month = Spending::get(['month', 'year'])
+                                    ->map(function ($spending) {
+                                        $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
+                                        return [
+                                            "$spending->month, $year",
+                                        ];
+                                    })
+                                    ->toArray();
+        $spendings_data = [
+            'data' => Arr::flatten($spendings_total),
+            'categories' => Arr::flatten($spendings_month)
+        ];
+        // dd($spendings_data);
+
+        return view('home', compact('months_years', 'spendings_data'));
     }
 
     public function storeSpendingList(Request $request)
     {
-        // dd($request->all());
         $month_year = explode(' - ', $request->month_year);
         $spending_arr = preg_split('/\n|\r\n?/', $request->spending_list);
 
