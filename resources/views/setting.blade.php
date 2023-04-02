@@ -23,14 +23,14 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('spending_list.store') }}" method="POST">
+                    <form action="{{ route('commitment.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="col-auto">
-                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Add commitment">
+                                <input type="text" class="form-control form-control-sm" name="commitment" placeholder="Add commitment">
                             </div>
                             <div class="col-auto">
-                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Add value">
+                                <input type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
                             </div>
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-primary btn-sm">Save</button>
