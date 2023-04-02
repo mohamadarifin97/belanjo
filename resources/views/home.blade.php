@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="monthYear" class="form-label">Month and Years</label>
+                            <label for="monthYear" class="form-label">Month and Yearsa</label>
                             <select class="form-select form-select-sm" name="month_year" id="monthYear" aria-label="Month and year">
                                 @foreach ($months_years as $month_year)
                                     <option value="{{$month_year['month']}} - {{$month_year['year']}}">{{$month_year['month_name']}}, {{$month_year['year']}}</option>
