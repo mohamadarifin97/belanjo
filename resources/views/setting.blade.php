@@ -15,12 +15,12 @@
                     @endif
 
                     <div class="row mb-3 mt-3">
-                        <div class="col-md-6 ps-5">
+                        {{-- <div class="col-md-6 ps-5">
                             <p>Zakat</p>
                         </div>
                         <div class="col-md-6">
                             <p>RM 70</p>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <form action="{{ route('commitment.store') }}" method="POST">
