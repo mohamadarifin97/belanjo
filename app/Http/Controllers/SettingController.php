@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 
 class SettingController extends Controller
 {
@@ -27,6 +28,19 @@ class SettingController extends Controller
         krsort($months_years);
 
         return view('setting', compact('months_years'));
+    }
+
+    public function listCommitment(Request $request)
+    {
+        $data = Commitment::all();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $actionBtn = '<a href="javascript:void(0)" class="edit text-primary me-1"><i class="bi bi-pen"></i></a> <a href="javascript:void(0)" class="delete text-danger"><i class="bi bi-trash"></i></a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function storeCommitment(Request $request)

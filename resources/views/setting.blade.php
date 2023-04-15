@@ -1,5 +1,17 @@
 @extends('layouts.main')
-
+@push('styles')
+<style>
+    .dataTables_info, .dataTables_length {
+        display: none;
+    }
+    .dataTables_filter {
+        text-align: right;
+    }
+    #DataTables_Table_0_paginate {
+        text-align: center;
+    }
+</style>
+@endpush
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,13 +26,11 @@
                         </div>
                     @endif
 
-                    <div class="row mb-3 mt-3">
-                        {{-- <div class="col-md-6 ps-5">
-                            <p>Zakat</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>RM 70</p>
-                        </div> --}}
+                    <div class="mb-3 mt-3">
+                        <table class="table table-responsive commitment-table">
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
 
                     <form action="{{ route('commitment.store') }}" method="POST">
@@ -74,3 +84,25 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        var table = $('.commitment-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('commitment.list') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'commitment', commitment: 'name'},
+                {data: 'value', name: 'value'},
+                {data: 'action', name: 'action', orderable: true, searchable: true},
+            ]
+        });
+
+        var a = $('.paginate_button').text()
+        console.log(a)
+    })
+</script>
+@endpush
+<script></script>
