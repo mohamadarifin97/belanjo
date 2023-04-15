@@ -43,13 +43,15 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
+                    <h4>Spendings</h4>
+
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form action="{{ route('spending_list.store') }}" method="POST">
+                    <form action="{{ route('spending_list.store') }}" class="mt-3" method="POST">
                         @csrf
 
                         <div class="mb-3">
