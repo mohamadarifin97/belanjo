@@ -11,7 +11,7 @@ Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::post('/home/spend-list-store', [HomeController::class, 'storeSpendingList'])->name('spending_list.store');
 
 Route::get('/setting', [SettingController::class, 'index'])->name('setting');
 Route::post('/setting/commitment-store', [SettingController::class, 'storeCommitment'])->name('commitment.store');
+Route::post('/setting/spend-list-store', [SettingController::class, 'storeSpendingList'])->name('spending_list.store');
