@@ -43,6 +43,6 @@ class HomeController extends Controller
             'categories' => Arr::flatten($spendings_month)
         ];
 
-        return view('home', compact('months_years', 'spendings_data'));
+        return view('home', compact('spendings_data'));
     }
 }
