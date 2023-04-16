@@ -8,7 +8,7 @@
         text-align: right;
     }
     #DataTables_Table_0_paginate {
-        text-align: center;
+        text-align: right;
     }
 </style>
 @endpush
@@ -91,17 +91,37 @@
         var table = $('.commitment-table').DataTable({
             processing: true,
             serverSide: true,
+            language: {
+                "paginate": {
+                    "previous": '<i class="bi bi-arrow-left me-2"></i>',
+                    "next": '<i class="bi bi-arrow-right ms-2"></i>'
+                },
+                "aria": {
+                    "paginate": {
+                        "first":    'First',
+                        "previous": 'Previous',
+                        "next":     'Next',
+                        "last":     'Last'
+                    }
+                }
+            },
             ajax: "{{ route('commitment.list') }}",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'commitment', commitment: 'name'},
-                {data: 'value', name: 'value'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ]
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                {data: 'commitment', commitment: 'name', orderable: false},
+                {data: 'value', name: 'value', orderable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ],
+            order: [],
+            aoColumns: [
+                { "bSortable": false },
+                { "bSortable": false },
+                { "bSortable": false },
+                { "bSortable": false },
+                { "bSortable": false },
+                { "bSortable": false }
+            ],
         });
-
-        var a = $('.paginate_button').text()
-        console.log(a)
     })
 </script>
 @endpush

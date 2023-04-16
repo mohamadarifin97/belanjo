@@ -51,4 +51,10 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
         return redirect('login');
     }
+
+    protected function authenticated() {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
+    }
 }
