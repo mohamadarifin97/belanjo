@@ -6,7 +6,7 @@ use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/')->middleware('auth');
+Route::get('/')->middleware('auth');
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
