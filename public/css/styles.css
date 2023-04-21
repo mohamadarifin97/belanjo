@@ -1,3 +1,15 @@
 * {
     /* border: 0.5px solid red; */
 }
+#sidebar {
+    border-right: 1px solid #0C6DFD;
+}
+h4 {
+    color: #FFFFFF;
+}
+.card {
+    background-color: #343A3F;
+}
+label, td, text, tspan {
+    color: #0C6DFD;
+}

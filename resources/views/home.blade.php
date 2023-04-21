@@ -6,6 +6,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
+                    <h4>Spendings</h4>
                     <div id="spendingChart"></div>
                 </div>
             </div>
@@ -19,7 +20,8 @@
 
         var options = {
             chart: {
-                type: 'line'
+                type: 'line',
+                foreColor: '#0C6DFD'
             },
             stroke: {
                 curve: 'smooth',
