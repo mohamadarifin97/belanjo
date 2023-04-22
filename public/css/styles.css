@@ -13,3 +13,11 @@ h4 {
 label, td, text, tspan {
     color: #0C6DFD;
 }
+.form-control, .form-select-sm {
+    color: #FFFFFF;
+    background-color: #212529;
+}
+input[type=search] {
+    color: #FFFFFF;
+    background-color: #212529;
+}

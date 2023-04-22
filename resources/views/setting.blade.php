@@ -43,7 +43,7 @@
                                 <input type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
                             </div>
                         </div>
                     </form>
@@ -76,7 +76,7 @@
                             <label for="spendingList" class="form-label">Spending List</label>
                             <textarea class="form-control fomr-control-sm" id="spendingList" name="spending_list" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
                     </form>
                 </div>
             </div>
