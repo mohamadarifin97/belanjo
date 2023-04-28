@@ -40,15 +40,24 @@ class AuthController extends BaseController
     
     public function login(Request $request): JsonResponse
     {
-        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) { 
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            $success['name'] =  $user->name;
+            $success['name'] =  $user->username;
 
             return $this->sendResponse($success, 'User login successfully.');
-        } 
-        else{ 
+        } else { 
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         } 
+    }
+
+    public function logout (Request $request) {
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = [
+            'status' => 'success',
+            'message' => 'You have been successfully logged out!'
+        ];
+        return response($response, 200);
     }
 }
