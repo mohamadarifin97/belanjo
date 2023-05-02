@@ -45,6 +45,7 @@ class SettingController extends Controller
 
     public function storeCommitment(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'commitment' => 'required',
             'value' => 'required'

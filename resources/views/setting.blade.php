@@ -75,7 +75,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCommitmentModalLabel">Add Commitment</h5>
+                <h3 class="modal-title" id="addCommitmentModalLabel">Add Commitment</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('commitment.store') }}" method="POST">
@@ -89,10 +89,26 @@
                         <label for="value" class="form-label">Value</label>
                         <input id="value" type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
                     </div>
+                    <h5 class="mt-4">Current Month Source of Income</h5>
+                    <div id="div_sourceOfIncome">
+                        <div class="row row_sourceOfIncome">
+                            <div class="col">
+                                <label for="sourceOfIncome" class="form-label">Source of Income</label>
+                                <input id="sourceOfIncome" type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[0][source_of_income]" placeholder="Add source of income">
+                            </div>
+                            <div class="col">
+                                <label for="valueSOI" class="form-label">Value</label>
+                                <input id="valueSOI" type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[0][value]" placeholder="Add value">
+                            </div>
+                            <div class="col-1 align-self-end">
+                                <h5><a id="test" href="#" onclick="addInput()"><i class="bi bi-plus-circle-fill"></i></a></h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
             </div>
@@ -103,6 +119,7 @@
 @push('scripts')
 <script>
     $(function () {
+        $('#addCommitmentModal').modal('show');
         var table = $('.commitment-table').DataTable({
             processing: true,
             serverSide: true,
@@ -138,6 +155,39 @@
             ],
         });
     })
+
+    function addInput() {
+        let no_of_input = $('.row_sourceOfIncome').length
+        $('#div_sourceOfIncome').append(`
+            <div class="row row_sourceOfIncome mt-2">
+                <div class="col">
+                    <input type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[${no_of_input}][source_of_income]" placeholder="Add source of income">
+                </div>
+                <div class="col">
+                    <input type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[${no_of_input}][value]" placeholder="Add value">
+                </div>
+                <div class="col-1 align-self-end">
+                    <h5><a href="#" onclick="deleteInput(this)"><i class="text-danger bi bi-dash-circle-fill"></i></a></h5>
+                </div>
+            </div>
+        `)
+    }
+
+    function deleteInput(element) {
+        $(element).parent().parent().parent().remove()
+
+        $("input.sourceOfIncome").each(function(i) {
+            if (i > 0) {
+                $(this).attr('name', `sourceOfIncome_arr[${i}][source_of_income]`);
+            }
+        });
+
+        $("input.value").each(function(i) {
+            if (i > 0) {
+                $(this).attr('name', `sourceOfIncome_arr[${i}][value]`);
+            }
+        });
+    }
 </script>
 @endpush
 <script></script>
