@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-inline-flex align-items-center">
-                        <h4 class="me-2">Monthly Commitment <a href="#" data-bs-toggle="modal" data-bs-target="#addCommitmentModal"><i class="bi bi-plus-square"></i></a></h4>
+                        <h4>Monthly Commitment <a href="#" class="ms-2" data-bs-toggle="modal" data-bs-target="#addCommitmentModal"><i class="bi bi-plus-square"></i></a></h4>
                     </div>
 
                     @if (session('status'))
@@ -50,7 +50,6 @@
 
                     <form action="{{ route('spending_list.store') }}" class="mt-3" method="POST">
                         @csrf
-
                         <div class="mb-3">
                             <label for="monthYear" class="form-label">Month and Years</label>
                             <select class="form-select form-select-sm" name="month_year" id="monthYear" aria-label="Month and year">
@@ -63,7 +62,27 @@
                             <label for="spendingList" class="form-label">Spending List</label>
                             <textarea class="form-control fomr-control-sm" id="spendingList" name="spending_list" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+
+                        <h5 class="mt-4">Current Month Source of Income</h5>
+                        <div id="div_sourceOfIncome">
+                            <div class="row row_sourceOfIncome">
+                                <div class="col">
+                                    <label for="sourceOfIncome" class="form-label">Source of Income</label>
+                                    <input id="sourceOfIncome" type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[0][source_of_income]" placeholder="Add source of income">
+                                </div>
+                                <div class="col">
+                                    <label for="valueSOI" class="form-label">Value</label>
+                                    <input id="valueSOI" type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[0][value]" placeholder="Add value">
+                                </div>
+                                <div class="col-1 align-self-end">
+                                    <h5><a id="test" href="#" onclick="addInput()"><i class="bi bi-plus-circle-fill"></i></a></h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -89,22 +108,6 @@
                         <label for="value" class="form-label">Value</label>
                         <input id="value" type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
                     </div>
-                    <h5 class="mt-4">Current Month Source of Income</h5>
-                    <div id="div_sourceOfIncome">
-                        <div class="row row_sourceOfIncome">
-                            <div class="col">
-                                <label for="sourceOfIncome" class="form-label">Source of Income</label>
-                                <input id="sourceOfIncome" type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[0][source_of_income]" placeholder="Add source of income">
-                            </div>
-                            <div class="col">
-                                <label for="valueSOI" class="form-label">Value</label>
-                                <input id="valueSOI" type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[0][value]" placeholder="Add value">
-                            </div>
-                            <div class="col-1 align-self-end">
-                                <h5><a id="test" href="#" onclick="addInput()"><i class="bi bi-plus-circle-fill"></i></a></h5>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -119,7 +122,6 @@
 @push('scripts')
 <script>
     $(function () {
-        $('#addCommitmentModal').modal('show');
         var table = $('.commitment-table').DataTable({
             processing: true,
             serverSide: true,

@@ -45,7 +45,6 @@ class SettingController extends Controller
 
     public function storeCommitment(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'commitment' => 'required',
             'value' => 'required'
@@ -70,6 +69,8 @@ class SettingController extends Controller
 
     public function storeSpendingList(Request $request)
     {
+        dd($request->all());
+
         $month_year = explode(' - ', $request->month_year);
         $spending_arr = preg_split('/\n|\r\n?/', $request->spending_list);
 
