@@ -14,7 +14,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $period = now()->subMonths(20)->monthsUntil(now());
+        $period = now()->subMonths(1)->monthsUntil(now());
 
         $months_years = [];
         foreach ($period as $date)
@@ -69,8 +69,6 @@ class SettingController extends Controller
 
     public function storeSpendingList(Request $request)
     {
-        // dd($request->all());
-
         $month_year = explode(' - ', $request->month_year);
         $spending_arr = preg_split('/\n|\r\n?/', $request->spending_list);
 
