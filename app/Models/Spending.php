@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use function PHPSTORM_META\map;
 
@@ -20,7 +21,8 @@ class Spending extends Model
         'updated_at'
     ];
 
-    // protected $casts = [
-    //     'spend_list' => 'array'
-    // ];
+    public function monthlyIncomes(): HasMany
+    {
+        return $this->hasMany(MonthlyIncome::class);
+    }
 }
