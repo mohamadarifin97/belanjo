@@ -18,7 +18,9 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h4>Monthly Commitment</h4>
+                    <div class="d-inline-flex align-items-center">
+                        <h4 class="me-2">Monthly Commitment <a href=""><i class="bi bi-plus-square"></i></a></h4>
+                    </div>
 
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -43,7 +45,7 @@
                                 <input type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
                             </div>
                         </div>
                     </form>
@@ -76,7 +78,7 @@
                             <label for="spendingList" class="form-label">Spending List</label>
                             <textarea class="form-control fomr-control-sm" id="spendingList" name="spending_list" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
                     </form>
                 </div>
             </div>

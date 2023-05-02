@@ -2,16 +2,19 @@
     /* border: 0.5px solid red; */
 }
 #sidebar {
-    border-right: 1px solid #0C6DFD;
+    border-right: 2px solid #0C6DFD;
 }
 h4 {
+    color: #FFFFFF;
+}
+.nav-text {
     color: #FFFFFF;
 }
 .card {
     background-color: #343A3F;
 }
 label, td, text, tspan {
-    color: #0C6DFD;
+    color: #FFFFFF;
 }
 .form-control, .form-select-sm {
     color: #FFFFFF;
@@ -20,4 +23,19 @@ label, td, text, tspan {
 input[type=search] {
     color: #FFFFFF;
     background-color: #212529;
+}
+.btn-primary {
+    background-color: rgb(29, 155, 240) !important;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7 !important;
+}
+.bi-plus-square {
+    color: rgb(29, 155, 240) !important;
+}
+.bi-plus-square:hover {
+    color: #0b5ed7 !important;
+}
+.bi-house, .bi-gear {
+    color: #FFFFFF;
 }

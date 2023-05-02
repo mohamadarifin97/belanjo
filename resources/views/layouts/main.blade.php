@@ -40,12 +40,12 @@
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link align-middle px-0">
-                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline nav-text">Home</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('setting') }}" class="nav-link align-middle px-0">
-                                    <i class="fs-4 bi bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Setting</span>
+                                    <i class="fs-4 bi-gear"></i> <span class="ms-1 d-none d-sm-inline nav-text">Setting</span>
                                 </a>
                             </li>
                             {{-- <li>
