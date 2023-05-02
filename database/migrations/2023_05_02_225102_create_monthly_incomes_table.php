@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('monthly_incomes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('spending_id');
+            $table->foreign('spending_id')->references('id')->on('spendings')->onDelete('cascade');
             $table->string('name');
             $table->string('value');
             $table->text('description')->nullable();

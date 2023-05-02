@@ -69,7 +69,7 @@ class SettingController extends Controller
 
     public function storeSpendingList(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $month_year = explode(' - ', $request->month_year);
         $spending_arr = preg_split('/\n|\r\n?/', $request->spending_list);
@@ -78,19 +78,25 @@ class SettingController extends Controller
         $count = 0;
         foreach ($spending_arr as $spending) {
             $explode = explode(' - ', $spending);
-            info($explode);
             $new_spending_arr[$explode[0]] = $explode[1];
             $count = $count + $explode[1];
         }
 
         DB::beginTransaction();
         try {
-            Spending::create([
+            $spending = Spending::create([
                 'spend_list' => json_encode($new_spending_arr),
                 'total' => $count,
                 'month' => intval($month_year[0]),
                 'year' => intval($month_year[1])
             ]);
+
+            foreach ($request->sourceOfIncome_arr as $sourceOfIncome) {
+                $spending->monthlyIncomes()->create([
+                    'name' => $sourceOfIncome['source_of_income'],
+                    'value' => $sourceOfIncome['value']
+                ]);
+            }
 
             DB::commit();
             return back()->with('message', 'Ok, mantap!');
