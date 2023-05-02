@@ -7,7 +7,7 @@
 h4 {
     color: #FFFFFF;
 }
-.nav-text {
+.nav-text, .modal-title {
     color: #FFFFFF;
 }
 .card {
@@ -38,4 +38,7 @@ input[type=search] {
 }
 .bi-house, .bi-gear {
     color: #FFFFFF;
+}
+.modal-content {
+    background-color: #343A3F !important;
 }

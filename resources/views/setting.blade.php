@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-inline-flex align-items-center">
-                        <h4 class="me-2">Monthly Commitment <a href=""><i class="bi bi-plus-square"></i></a></h4>
+                        <h4 class="me-2">Monthly Commitment <a href="#" data-bs-toggle="modal" data-bs-target="#addCommitmentModal"><i class="bi bi-plus-square"></i></a></h4>
                     </div>
 
                     @if (session('status'))
@@ -34,21 +34,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <form action="{{ route('commitment.store') }}" method="POST">
-                        @csrf
-                        <div class="row mb-3">
-                            <div class="col-auto">
-                                <input type="text" class="form-control form-control-sm" name="commitment" placeholder="Add commitment">
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -85,6 +70,34 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addCommitmentModal" tabindex="-1" aria-labelledby="addCommitmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCommitmentModalLabel">Add Commitment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('commitment.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="commitment" class="form-label">Commitment</label>
+                        <input id="commitment" type="text" class="form-control form-control-sm" name="commitment" placeholder="Add commitment">
+                    </div>
+                    <div class="mb-3">
+                        <label for="value" class="form-label">Value</label>
+                        <input id="value" type="text" class="form-control form-control-sm" name="value" placeholder="Add value">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
