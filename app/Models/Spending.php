@@ -25,4 +25,9 @@ class Spending extends Model
     {
         return $this->hasMany(MonthlyIncome::class);
     }
+
+    public function spendingDetails(): HasMany
+    {
+        return $this->hasMany(MonthlyIncome::class);
+    }
 }
