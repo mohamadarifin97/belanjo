@@ -11,7 +11,8 @@ h4, h5 {
     color: #FFFFFF;
 }
 .card {
-    background-color: #343A3F;
+    /* background-color: #343A3F; */
+    background-color: #16181C;
 }
 label, td, text, tspan {
     color: #FFFFFF;
