@@ -84,16 +84,18 @@ class SettingController extends Controller
         try {
             $spending = Spending::create([
                 'spend_list' => json_encode($new_spending_arr),
-                'total' => $count,
+                'total' => number_format($count, 2, '.', ''),
                 'month' => intval($month_year[0]),
                 'year' => intval($month_year[1])
             ]);
 
             foreach ($request->sourceOfIncome_arr as $sourceOfIncome) {
-                $spending->monthlyIncomes()->create([
-                    'name' => $sourceOfIncome['source_of_income'],
-                    'value' => $sourceOfIncome['value']
-                ]);
+                if ($sourceOfIncome['source_of_income'] != null && $sourceOfIncome['value'] != null) {
+                    $spending->monthlyIncomes()->create([
+                        'name' => $sourceOfIncome['source_of_income'],
+                        'value' => $sourceOfIncome['value']
+                    ]);
+                }
             }
 
             DB::commit();

@@ -60,7 +60,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="spendingList" class="form-label">Spending List</label>
-                            <textarea class="form-control fomr-control-sm" id="spendingList" name="spending_list" rows="3"></textarea>
+                            <textarea class="form-control fomr-control-sm" id="spendingList" name="spending_list" rows="3" required></textarea>
                         </div>
 
                         <h5 class="mt-4">Current Month Source of Income</h5>
@@ -68,11 +68,11 @@
                             <div class="row row_sourceOfIncome">
                                 <div class="col">
                                     <label for="sourceOfIncome" class="form-label">Source of Income</label>
-                                    <input id="sourceOfIncome" type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[0][source_of_income]" placeholder="Add source of income">
+                                    <input id="sourceOfIncome" type="text" class="sourceOfIncome form-control form-control-sm" name="sourceOfIncome_arr[0][source_of_income]" placeholder="Add source of income" required>
                                 </div>
                                 <div class="col">
                                     <label for="valueSOI" class="form-label">Value</label>
-                                    <input id="valueSOI" type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[0][value]" placeholder="Add value">
+                                    <input id="valueSOI" type="text" class="value form-control form-control-sm" name="sourceOfIncome_arr[0][value]" placeholder="Add value" required>
                                 </div>
                                 <div class="col-1 align-self-end">
                                     <h5><a id="test" href="#" onclick="addInput()"><i class="bi bi-plus-circle-fill"></i></a></h5>
