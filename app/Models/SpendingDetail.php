@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SpendingDetail extends Model
 {
     use HasFactory;
-
+    
+    protected $guarded = [];
     protected $fillabel = [
-        'spending',
+        'spend',
         'value'
     ];
 

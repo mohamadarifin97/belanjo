@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('spending_id');
             $table->foreign('spending_id')->references('id')->on('spendings')->onDelete('cascade');
-            $table->string('spending')->nullable();
+            $table->string('spend')->nullable();
             $table->string('value')->nullable();
             $table->timestamps();
         });

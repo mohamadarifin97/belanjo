@@ -21,6 +21,10 @@ class Spending extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'spend_list' => 'array',
+      ];
+
     public function monthlyIncomes(): HasMany
     {
         return $this->hasMany(MonthlyIncome::class);
@@ -28,6 +32,6 @@ class Spending extends Model
 
     public function spendingDetails(): HasMany
     {
-        return $this->hasMany(MonthlyIncome::class);
+        return $this->hasMany(SpendingDetail::class);
     }
 }
