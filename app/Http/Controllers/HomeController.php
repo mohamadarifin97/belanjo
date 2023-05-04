@@ -12,25 +12,15 @@ use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $spendings_total = Spending::get('total')->toArray();
-        $spendings_month = Spending::get(['month', 'year'])
+        $spendings_total = Spending::orderBy('id', 'desc')->limit(12)->get('total')->sortByDesc('id')->toArray();
+        $spendings_month = Spending::orderBy('id', 'desc')->limit(12)->get(['month', 'year'])
                                     ->map(function ($spending) {
                                         $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
                                         return [
@@ -38,9 +28,10 @@ class HomeController extends Controller
                                         ];
                                     })
                                     ->toArray();
+
         $spendings_data = [
-            'data' => Arr::flatten($spendings_total),
-            'categories' => Arr::flatten($spendings_month)
+            'data' => Arr::flatten(array_reverse($spendings_total)),
+            'categories' => Arr::flatten(array_reverse($spendings_month))
         ];
 
         return view('home', compact('spendings_data'));
