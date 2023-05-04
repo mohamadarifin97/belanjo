@@ -89,6 +89,13 @@ class SettingController extends Controller
                 'year' => intval($month_year[1])
             ]);
 
+            foreach ($new_spending_arr as $key => $value) {
+                $spending->spendingDetails()->create([
+                    'spend' => $key,
+                    'value' => $value
+                ]);
+            }
+
             foreach ($request->sourceOfIncome_arr as $sourceOfIncome) {
                 if ($sourceOfIncome['source_of_income'] != null && $sourceOfIncome['value'] != null) {
                     $spending->monthlyIncomes()->create([
