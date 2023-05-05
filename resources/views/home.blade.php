@@ -10,6 +10,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="w-25">
                             <select id="spending_year_select" class="form-select form-select-sm" aria-label="Default select example">
+                                <option></option>
                                 @foreach ($years as $year)
                                     <option>{{$year['year']}}</option>
                                 @endforeach

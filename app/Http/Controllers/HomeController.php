@@ -52,7 +52,7 @@ class HomeController extends Controller
                                         ->limit(12)
                                         ->where('year', $request->year)
                                         ->get(['month', 'year'])
-                                        ->map(function ($spending) {
+                                        ->map(function($spending) {
                                             $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
                                             return [
                                                 "$spending->month, $year",
@@ -65,6 +65,30 @@ class HomeController extends Controller
                 'categories' => Arr::flatten(array_reverse($spendings_month))
             ];
     
+            return response()->json($spendings_data);
+        } else {
+            $spendings_total = Spending::orderBy('id', 'desc')
+                                        ->limit(12)
+                                        ->get('total')
+                                        ->sortByDesc('id')
+                                        ->toArray();
+
+            $spendings_month = Spending::orderBy('id', 'desc')
+                                        ->limit(12)
+                                        ->get(['month', 'year'])
+                                        ->map(function($spending) {
+                                            $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
+                                            return [
+                                                "$spending->month, $year",
+                                            ];
+                                        })
+                                        ->toArray();
+
+            $spendings_data = [
+                'data' => Arr::flatten(array_reverse($spendings_total)),
+                'categories' => Arr::flatten(array_reverse($spendings_month))
+            ];
+
             return response()->json($spendings_data);
         }
     }
