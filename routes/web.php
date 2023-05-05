@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/home/spending-stat', [HomeController::class, 'spendingStat']);
     
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
     Route::get('/setting/commitment-list', [SettingController::class, 'listCommitment'])->name('commitment.list');

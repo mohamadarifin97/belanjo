@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $spendings_total = Spending::orderBy('id', 'desc')->limit(12)->get('total')->sortByDesc('id')->toArray();
+        $spendings_total = Spending::orderBy('id', 'desc')->limit(12)->get('total')->toArray();
         $spendings_month = Spending::orderBy('id', 'desc')->limit(12)->get(['month', 'year'])
                                     ->map(function ($spending) {
                                         $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
@@ -28,12 +28,44 @@ class HomeController extends Controller
                                         ];
                                     })
                                     ->toArray();
+        $years = Spending::orderBy('year', 'desc')->distinct()->get(['year'])->toArray();
 
         $spendings_data = [
             'data' => Arr::flatten(array_reverse($spendings_total)),
             'categories' => Arr::flatten(array_reverse($spendings_month))
         ];
 
-        return view('home', compact('spendings_data'));
+        return view('home', compact('spendings_data', 'years'));
+    }
+
+    public function spendingStat(Request $request)
+    {
+        if ($request->year) {
+            $spendings_total = Spending::orderBy('id', 'desc')
+                                        ->limit(12)
+                                        ->where('year', $request->year)
+                                        ->get('total')
+                                        ->sortByDesc('id')
+                                        ->toArray();
+
+            $spendings_month = Spending::orderBy('id', 'desc')
+                                        ->limit(12)
+                                        ->where('year', $request->year)
+                                        ->get(['month', 'year'])
+                                        ->map(function ($spending) {
+                                            $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
+                                            return [
+                                                "$spending->month, $year",
+                                            ];
+                                        })
+                                        ->toArray();
+    
+            $spendings_data = [
+                'data' => Arr::flatten(array_reverse($spendings_total)),
+                'categories' => Arr::flatten(array_reverse($spendings_month))
+            ];
+    
+            return response()->json($spendings_data);
+        }
     }
 }
