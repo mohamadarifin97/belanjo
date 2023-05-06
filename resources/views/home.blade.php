@@ -93,12 +93,12 @@
             }
         }
 
-        if (window.myChart) {
-            window.myChart.destroy();
+        if (window.spendingchart) {
+            window.spendingchart.destroy();
         }
 
-        window.myChart = new ApexCharts(document.querySelector("#spendingChart"), options);
-        window.myChart.render();
+        window.spendingchart = new ApexCharts(document.querySelector("#spendingChart"), options);
+        window.spendingchart.render();
     }
 </script>
 @endpush
