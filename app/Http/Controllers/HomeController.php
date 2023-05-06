@@ -40,16 +40,24 @@ class HomeController extends Controller
 
     public function spendingStat(Request $request)
     {
+        if ($request->show == null) {
+            $show = 12;
+        } else if ($request->show == 'all') {
+            $show = null;
+        } else {
+            $show = $request->show;
+        }
+
         if ($request->year) {
             $spendings_total = Spending::orderBy('id', 'desc')
-                                        ->limit(12)
+                                        ->limit($show)
                                         ->where('year', $request->year)
                                         ->get('total')
                                         ->sortByDesc('id')
                                         ->toArray();
 
             $spendings_month = Spending::orderBy('id', 'desc')
-                                        ->limit(12)
+                                        ->limit($show)
                                         ->where('year', $request->year)
                                         ->get(['month', 'year'])
                                         ->map(function($spending) {
@@ -68,13 +76,13 @@ class HomeController extends Controller
             return response()->json($spendings_data);
         } else {
             $spendings_total = Spending::orderBy('id', 'desc')
-                                        ->limit(12)
+                                        ->limit($show)
                                         ->get('total')
                                         ->sortByDesc('id')
                                         ->toArray();
 
             $spendings_month = Spending::orderBy('id', 'desc')
-                                        ->limit(12)
+                                        ->limit($show)
                                         ->get(['month', 'year'])
                                         ->map(function($spending) {
                                             $year = substr(strval($spending->year), 2); //remove first 2 character from 4 digit year
