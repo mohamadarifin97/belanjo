@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group( function () {
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::get('home', [HomeController::class, 'index']);
+    Route::get('spending', [HomeController::class, 'spending']);
 });
