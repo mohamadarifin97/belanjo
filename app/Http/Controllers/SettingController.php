@@ -89,9 +89,12 @@ class SettingController extends Controller
         try {
             Commitment::where('id', $request->commitment_id)->update($validated_data->getData());
             DB::commit();
+
             return back()->with('message', 'Ok, mantap!');
         } catch (Exception $e) {
             DB::rollBack();
+            Log::error($e);
+            
             return back()->with('error', 'Ado yang tak kono haa!');
         }
     }
