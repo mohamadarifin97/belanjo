@@ -110,7 +110,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Add</button>
                     <input type="hidden" id="commitmentId" name="commitment_id">
                 </div>
             </form>
@@ -196,6 +196,7 @@
         $('#addCommitmentModal').modal('show')
         $('#commitmentForm').attr('action', "{{ route('commitment.store') }}")
         $('#addCommitmentModalLabel').text('Add Commitment')
+        $('#submitButton').text('Add')
         $('#commitment').val('')
         $('#value').val('')
     }
@@ -204,6 +205,7 @@
         $('#addCommitmentModal').modal('show')
         $('#commitmentForm').attr('action', "{{ route('commitment.update') }}")
         $('#addCommitmentModalLabel').text('Edit Commitment')
+        $('#submitButton').text('Edit')
         $('#commitment').val(data.commitment)
         $('#value').val(data.value)
         $('#commitmentId').val(data.id)

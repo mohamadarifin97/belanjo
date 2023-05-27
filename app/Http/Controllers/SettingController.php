@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class SettingController extends Controller
@@ -75,14 +76,18 @@ class SettingController extends Controller
 
     public function updateCommitment(Request $request)
     {
-        $validated_data = $request->validate([
+        $validated_data = Validator::make($request->only(['commitment', 'value']), [
             'commitment' => 'required|max:255',
-            'value' => 'required'
+            'value' => 'required|regex:/^[0-9.]+$/'
         ]);
+
+        if ($validated_data->fails()) {
+            return back()->with('error', 'Masukkan data yang betol!');
+        }
 
         DB::beginTransaction();
         try {
-            Commitment::where('id', $request->commitment_id)->update($validated_data);
+            Commitment::where('id', $request->commitment_id)->update($validated_data->getData());
             DB::commit();
             return back()->with('message', 'Ok, mantap!');
         } catch (Exception $e) {
