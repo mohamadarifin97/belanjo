@@ -43,11 +43,11 @@
               <span class="nav_logo-name">BELANJO</span>
             </a>
             <div class="nav_list">
-              <a href="{{ route('home') }}" class="nav_link active">
+              <a href="{{ route('home') }}" class="nav_link {{ (request()->is('home*')) ? 'active' : '' }}">
                 <i class='bx bx-grid-alt nav_icon'></i>
                 <span class="nav_name">Home</span>
               </a>
-              <a href="{{ route('setting') }}" class="nav_link">
+              <a href="{{ route('setting') }}" class="nav_link {{ (request()->is('setting*')) ? 'active' : '' }}">
                 <i class='bx bx-user nav_icon'></i>
                 <span class="nav_name">Setting</span>
               </a>
