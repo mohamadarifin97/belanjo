@@ -89,7 +89,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="addCommitmentModal" tabindex="-1" aria-labelledby="addCommitmentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,9 +113,10 @@
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
+
 @endsection
 
 @push('scripts')

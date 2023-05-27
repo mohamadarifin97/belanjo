@@ -31,14 +31,10 @@
   <!-- SCRIPTS -->
   {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
-  {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />     --}}
-  <link href="{{ asset('css/styles2.css') }}" rel="stylesheet" />    
+  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />    
   @stack('styles')
 </head>
 <body id="body-pd">
-  <header class="header" id="header">
-      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-  </header>
   <div class="l-navbar" id="nav-bar">
       <nav class="nav">
           <div>
@@ -67,7 +63,7 @@
   </div>
 
   <!--Container Main start-->
-  <div class="height-100 bg-light">
+  <div class="main height-100">
       @yield('content')
   </div>
   <!--Container Main end-->
@@ -126,21 +122,19 @@
   </script>
   <script>
     const body = document.querySelector('#body-pd');
-    const header = document.querySelector('#header');
     const navbar = document.querySelector('#nav-bar');
 
-    //show sidebar on hover
-    navbar.addEventListener('mouseenter', function() {
-      navbar.classList.add('show');
-      body.classList.add('body-pd');
-      header.classList.add('body-pd');
-    });
+    // show/hide navbar
+    document.addEventListener('mousemove', function(event) {
+      var cursorX = event.clientX;
 
-    //close sidebar on mouseleave
-    navbar.addEventListener('mouseleave', function() {
-      navbar.classList.remove('show');
-      body.classList.remove('body-pd');
-      header.classList.remove('body-pd');
+      if (cursorX == 0) {
+        navbar.classList.add('show-navbar');
+      }
+
+      if (cursorX > 224) {
+        navbar.classList.remove('show-navbar');
+      }
     });
 
     document.addEventListener("DOMContentLoaded", function(event) {
@@ -155,7 +149,7 @@
       if (toggle && nav && bodypd && headerpd) {
         toggle.addEventListener('click', ()=>{
         // show navbar
-        nav.classList.toggle('show')
+        nav.classList.toggle('show-navbar')
         // change icon
         toggle.classList.toggle('bx-x')
         // add padding to body
