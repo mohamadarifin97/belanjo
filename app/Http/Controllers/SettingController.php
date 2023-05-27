@@ -17,8 +17,7 @@ class SettingController extends Controller
         $period = now()->subMonths(1)->monthsUntil(now());
 
         $months_years = [];
-        foreach ($period as $date)
-        {
+        foreach ($period as $date) {
             $months_years[] = [
                 'month' => $date->month,
                 'month_name' => $date->shortMonthName,
@@ -35,8 +34,15 @@ class SettingController extends Controller
         $data = Commitment::all();
         return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $actionBtn = '<a href="javascript:void(0)" class="edit text-primary me-1"><i class="bi bi-pen"></i></a> <a href="javascript:void(0)" class="delete text-danger"><i class="bi bi-trash"></i></a>';
+            ->addColumn('action', function ($row) {
+                $data = [
+                    'id' => $row->id,
+                    'commitment' => $row->commitment,
+                    'value' => $row->value
+                ];
+                $data_json = json_encode($data);
+
+                $actionBtn = "<a href='javascript:void(0)' onClick='editCommitment($data_json)' class='edit text-primary me-1'><i class='bi bi-pen'></i></a> <a href='javascript:void(0)' class='delete text-danger'><i class='bi bi-trash'></i></a>";
                 return $actionBtn;
             })
             ->rawColumns(['action'])
@@ -56,13 +62,29 @@ class SettingController extends Controller
                 'commitment' => $request->commitment,
                 'value' => $request->value,
             ]);
-    
+
             DB::commit();
             return back()->with('message', 'Ok, mantap!');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
 
+            return back()->with('error', 'Ado yang tak kono haa!');
+        }
+    }
+
+    public function updateCommitment(Request $request)
+    {
+        $validated_data = $request->validate([
+            'commitment' => 'required|max:255',
+            'value' => 'required'
+        ]);
+
+        DB::beginTransaction();
+        try {
+            Commitment::where('id', $request->commitment_id)->update($validated_data);
+            return back()->with('message', 'Ok, mantap!');
+        } catch (Exception $e) {
             return back()->with('error', 'Ado yang tak kono haa!');
         }
     }
@@ -107,11 +129,10 @@ class SettingController extends Controller
 
             DB::commit();
             return back()->with('message', 'Ok, mantap!');
-
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
-            
+
             return back()->with('error', 'Ado yang tak kono haa!');
         }
     }

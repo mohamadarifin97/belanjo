@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-inline-flex align-items-center">
-                        <h4>Monthly Commitment <a href="#" class="ms-2" data-bs-toggle="modal" data-bs-target="#addCommitmentModal"><i class="bi bi-plus-square"></i></a></h4>
+                        <h4>Monthly Commitment <a href="#" class="ms-2" onclick="addCommitment()" data-bs-toggle="modal" data-bs-target="#addCommitmentModal"><i class="bi bi-plus-square"></i></a></h4>
                     </div>
 
                     @if (session('status'))
@@ -96,7 +96,7 @@
                 <h3 class="modal-title" id="addCommitmentModalLabel">Add Commitment</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('commitment.store') }}" method="POST">
+            <form id="commitmentForm" action="{{ route('commitment.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
@@ -111,6 +111,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Add</button>
+                    <input type="hidden" id="commitmentId" name="commitment_id">
                 </div>
             </form>
         </div>
@@ -189,6 +190,23 @@
                 $(this).attr('name', `sourceOfIncome_arr[${i}][value]`);
             }
         });
+    }
+
+    function addCommitment() {
+        $('#addCommitmentModal').modal('show')
+        $('#commitmentForm').attr('action', "{{ route('commitment.store') }}")
+        $('#addCommitmentModalLabel').text('Add Commitment')
+        $('#commitment').val('')
+        $('#value').val('')
+    }
+
+    function editCommitment(data) {
+        $('#addCommitmentModal').modal('show')
+        $('#commitmentForm').attr('action', "{{ route('commitment.update') }}")
+        $('#addCommitmentModalLabel').text('Edit Commitment')
+        $('#commitment').val(data.commitment)
+        $('#value').val(data.value)
+        $('#commitmentId').val(data.id)
     }
 </script>
 @endpush
