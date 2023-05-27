@@ -15,7 +15,7 @@ D:BELANJO:
     - git status
     - git stash
     - git pull
-    - php artisan config:cache
+    - php artisan optimize:clear
     - git status
     - echo "------ DEV DEPLOYED ------"
   when: always
