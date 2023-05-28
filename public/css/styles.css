@@ -13,6 +13,10 @@
 ::after {
     box-sizing: border-box;
 }
+#app {
+    background-image: url('/img/burn-money.png');
+    background-size: cover;
+}
 #app .bx-lock-alt {
     font-size: 100px !important;
 }
@@ -20,10 +24,13 @@
     width: 50vh;
     height: 60vh;
     bottom: 50px;
+    border: 1px solid #FC6C3A;
+    border-radius: 0.7rem;
+    opacity: 0.88;
 }
 #app .card-header {
     font-size: 100px;
-    color: #2980ef;
+    color: #FC6C3A;
 }
 #app .login-input {
     background-color: transparent;
@@ -36,7 +43,7 @@
 }
 #app .login-input:focus {
     border-color: unset !important;
-    border-bottom-color: #86b7fe !important;
+    border-bottom-color: #FC6C3A !important;
     box-shadow: unset;
 }
 #app .login-input::placeholder {
@@ -44,6 +51,15 @@
 }
 #app .submit-div {
     margin-top: 2.5rem;
+}
+#app button {
+    background-color: #FC6C3A !important;
+    border-color: #FC6C3A;
+}
+#app button:hover {
+    background-color: white !important;
+    border-color: white;
+    color: black;
 }
 h4, h5, .modal-title {
     color: #FFFFFF;
