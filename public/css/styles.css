@@ -55,11 +55,12 @@
 #app button {
     background-color: #FC6C3A !important;
     border-color: #FC6C3A;
+    color: white;
 }
 #app button:hover {
     background-color: white !important;
     border-color: white;
-    color: black;
+    color: #FC6C3A;
 }
 h4, h5, .modal-title {
     color: #FFFFFF;
