@@ -14,6 +14,37 @@
 ::after {
     box-sizing: border-box;
 }
+#app .bx-lock-alt {
+    font-size: 100px !important;
+}
+#app .card {
+    width: 50vh;
+    height: 60vh;
+    bottom: 50px;
+}
+#app .card-header {
+    font-size: 100px;
+    color: #2980ef;
+}
+#app .login-input {
+    background-color: #232425 !important;
+    border: unset;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    color: white !important;
+}
+#app .login-input:focus {
+    border-color: unset !important;
+    border-bottom-color: #86b7fe !important;
+    box-shadow: unset;
+}
+#app .login-input::placeholder {
+    color: grey;
+}
+#app .submit-div {
+    margin-top: 2.5rem;
+}
 h4, h5, .modal-title {
     color: #FFFFFF;
 }

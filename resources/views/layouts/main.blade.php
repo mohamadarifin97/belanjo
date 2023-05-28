@@ -21,17 +21,19 @@
   {{-- DATATABLE --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 
-  {{-- BOXICON --}}
+  {{-- DATATABLE --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
   
   {{-- TOASTR --}}
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+  {{-- BOXICON --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
   <!-- SCRIPTS -->
   {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
-  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />    
+  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
   @stack('styles')
 </head>
 <body id="body-pd">
