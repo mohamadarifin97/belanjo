@@ -27,12 +27,13 @@
     color: #2980ef;
 }
 #app .login-input {
-    background-color: #232425 !important;
+    background-color: transparent;
     border: unset;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: grey;
     color: white !important;
+    border-radius: unset;
 }
 #app .login-input:focus {
     border-color: unset !important;
@@ -152,7 +153,7 @@ a {
     height: 100vh;
 }
 
-.card {
+.card, .card-header {
     /* background-color: #343A3F; */
     background-color: #242526;
 }
