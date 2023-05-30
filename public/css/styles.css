@@ -21,8 +21,8 @@
     font-size: 100px !important;
 }
 #app .card {
-    width: 50vh;
-    height: 60vh;
+    width: 350px;
+    height: 100%;
     bottom: 50px;
     border: 1px solid #FC6C3A;
     border-radius: 0.7rem;
