@@ -15,8 +15,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/home/spending-stat', [HomeController::class, 'spendingStat']);
     
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+    
     Route::get('/setting/commitment-list', [SettingController::class, 'listCommitment'])->name('commitment.list');
     Route::post('/setting/commitment-store', [SettingController::class, 'storeCommitment'])->name('commitment.store');
     Route::post('/setting/commitment-update', [SettingController::class, 'updateCommitment'])->name('commitment.update');
+    Route::get('/setting/commitment-delete/{id}', [SettingController::class, 'deleteCommitment'])->name('commitment.delete');
+    
     Route::post('/setting/spend-list-store', [SettingController::class, 'storeSpendingList'])->name('spending_list.store');
 });

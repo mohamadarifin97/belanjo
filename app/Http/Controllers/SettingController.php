@@ -43,7 +43,10 @@ class SettingController extends Controller
                 ];
                 $data_json = json_encode($data);
 
-                $actionBtn = "<a href='javascript:void(0)' onClick='editCommitment($data_json)' class='edit text-primary me-1'><i class='bi bi-pen'></i></a> <a href='javascript:void(0)' class='delete text-danger'><i class='bi bi-trash'></i></a>";
+                $actionBtn = "<a href='javascript:void(0)' onClick='editCommitment($data_json)' class='edit text-primary me-1'><i class='bi bi-pen'></i></a>";
+
+                $route = route('commitment.delete', ['id' => $row->id]);
+                $actionBtn .= "<a href='$route' class='delete text-danger'><i class='bi bi-trash'></i></a>";
                 return $actionBtn;
             })
             ->rawColumns(['action'])
@@ -89,14 +92,19 @@ class SettingController extends Controller
         try {
             Commitment::where('id', $request->commitment_id)->update($validated_data->getData());
             DB::commit();
-
             return back()->with('message', 'Ok, mantap!');
+
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
-            
             return back()->with('error', 'Ado yang tak kono haa!');
         }
+    }
+
+    public function deleteCommitment($id)
+    {
+        Commitment::find($id)->delete();
+        return back()->with('message', 'Ok, mantap!');
     }
 
     public function storeSpendingList(Request $request)

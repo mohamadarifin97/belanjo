@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('commitments', function (Blueprint $table) {
             $table->id();
-            $table->string('commitment');
-            $table->string('value');
+            $table->string('commitment')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
