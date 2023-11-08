@@ -113,10 +113,23 @@ class SettingController extends Controller
         $spending_arr = preg_split('/\n|\r\n?/', $request->spending_list);
 
         $new_spending_arr = [];
+        $group = '';
         $count = 0;
+
         foreach ($spending_arr as $spending) {
+            $is_hyphen_exist = strpos($spending, ' - ');
+
+            if ($is_hyphen_exist == false) {
+                $group = $spending;
+                continue;
+            }
+
             $explode = explode(' - ', $spending);
-            $new_spending_arr[$explode[0]] = $explode[1];
+            $new_spending_arr[$group][] = [
+                'spend' => $explode[0],
+                'value' => $explode[1]
+            ];
+
             $count = $count + $explode[1];
         }
 
@@ -129,11 +142,14 @@ class SettingController extends Controller
                 'year' => intval($month_year[1])
             ]);
 
-            foreach ($new_spending_arr as $key => $value) {
-                $spending->spendingDetails()->create([
-                    'spend' => $key,
-                    'value' => $value
-                ]);
+            foreach ($new_spending_arr as $key => $items) {
+                foreach ($items as $item) {
+                    $spending->spendingDetails()->create([
+                        'spend' => $item['spend'],
+                        'value' => $item['value'],
+                        'group' => $key
+                    ]);
+                }
             }
 
             foreach ($request->sourceOfIncome_arr as $sourceOfIncome) {
